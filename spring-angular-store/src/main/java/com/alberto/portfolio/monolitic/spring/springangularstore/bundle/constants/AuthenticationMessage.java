@@ -2,18 +2,18 @@ package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.constan
 
 import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.interfaces.IMessageEnum;
 
-public enum BusinessDatabaseMessage implements IMessageEnum {
+public enum AuthenticationMessage implements IMessageEnum {
 
-    notFound("exception.database.notfound"),
-    noRecordsFound("exception.database.norecordsfound");
+    noUserOrPassword("exception.authentication.nouser.or.password");
 
     private String key;
 
-    BusinessDatabaseMessage(String key) {
+    AuthenticationMessage(String key) {
         this.key = key;
     }
 
     public String getKey() {
         return key;
     }
+
 }

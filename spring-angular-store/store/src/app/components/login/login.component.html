@@ -1,0 +1,17 @@
+<div class="container">
+    <form action="" [formGroup]="form">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input [(ngModel)]="login.login" type="text" id="login" class="form-control" formControlName="login">
+        </div>
+        <div>
+            <label for="pass">Password</label>
+            <input [(ngModel)]="login.password" type="password" id="pass" class="form-control" formControlName="password">
+        </div>
+        <button (click)="authenticate()" class="btn btn-primary btn-block" [disabled]="!form.valid">Login In</button>
+        <p class="text-center">
+            <a href="/register">Create Account</a>
+        </p>
+    </form>
+   
+</div>

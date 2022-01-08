@@ -1,0 +1,9 @@
+form {
+    width: 50vw;
+    box-sizing: border-box;
+    padding: 2vw;
+}
+
+.container {
+    height: fit-content;
+}

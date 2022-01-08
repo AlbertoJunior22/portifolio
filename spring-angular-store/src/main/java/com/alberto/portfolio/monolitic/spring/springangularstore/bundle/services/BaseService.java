@@ -1,23 +1,24 @@
 package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.services;
 
-import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.constants.BusinessDatabaseMessage;
+import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.constants.DatabaseMessage;
+import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.converters.BaseConverter;
 import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.factories.ExceptionFactory;
 import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.factories.LocaleMessageFactory;
 import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.interfaces.IDTO;
-import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.interfaces.IEntity;
+import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.models.BaseEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class BaseService<R extends JpaRepository, E extends IEntity, D extends IDTO> {
+public class BaseService<R extends JpaRepository, E extends BaseEntity, D extends IDTO>
+    extends BaseConverter<E, D> {
 
     @Autowired
-    private R repository;
+    protected R repository;
 
     @Autowired
     private ModelMapper mapper;
@@ -28,38 +29,35 @@ public class BaseService<R extends JpaRepository, E extends IEntity, D extends I
     @Autowired
     private LocaleMessageFactory localeMessageFactory;
 
-    protected Type entityType;
-    protected Type dtoType;
-
     public D recoveryById(Long id) {
         Optional<E> optionalEntity = repository.findById(id);
         if (optionalEntity.isPresent())
-            return toDto(optionalEntity.get());
+            return fromEntity(optionalEntity.get());
 
-        throw exceptionFactory.throwDataBase(BusinessDatabaseMessage.notFound);
+        throw exceptionFactory.throwDataBase(DatabaseMessage.notFound);
     }
 
     public List<D> recoveryAll() {
         List<E> entities = repository.findAll();
         if (entities.isEmpty())
-            throw exceptionFactory.throwDataBase(BusinessDatabaseMessage.noRecordsFound);
+            throw exceptionFactory.throwDataBase(DatabaseMessage.noRecordsFound);
 
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
+        return entities.stream().map(this::fromEntity).collect(Collectors.toList());
     }
 
     public D create(D dto) {
         E entity = toEntity(dto);
         repository.save(entity);
-        return toDto(entity);
+        return fromEntity(entity);
     }
 
     public D updateProduct(D dto) {
         if (repository.existsById(dto.getId())) {
             E entity = toEntity(dto);
             repository.save(entity);
-            return toDto(entity);
+            return fromEntity(entity);
         }
-        throw exceptionFactory.throwDataBase(BusinessDatabaseMessage.notFound);
+        throw exceptionFactory.throwDataBase(DatabaseMessage.notFound);
     }
 
     public void remove(Long id) {
@@ -67,18 +65,6 @@ public class BaseService<R extends JpaRepository, E extends IEntity, D extends I
             repository.deleteById(id);
             return;
         }
-        throw exceptionFactory.throwDataBase(BusinessDatabaseMessage.notFound);
-    }
-
-    private E toEntity(D dto) {
-        if (dto != null)
-            return mapper.map(dto, entityType);
-        return null;
-    }
-
-    private D toDto(E p) {
-        if (p != null)
-            return mapper.map(p, dtoType);
-        return null;
+        throw exceptionFactory.throwDataBase(DatabaseMessage.notFound);
     }
 }

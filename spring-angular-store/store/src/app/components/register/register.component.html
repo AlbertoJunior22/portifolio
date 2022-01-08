@@ -1,0 +1,68 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input [(ngModel)]="person.login" type="text" id="login" class="form-control" formControlName="login">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input [(ngModel)]="person.email" formControlName="email" type="email" id="email" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email-retype">Retype Your Email</label>
+                <input [(ngModel)]="person.emailConfirmation" formControlName="emailConfirmation" type="email" id="email-retype" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="password">Password</label>
+                <input [(ngModel)]="person.password" formControlName="password" type="text" id="password" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password-retype">Retype Your Password</label>
+                <input [(ngModel)]="person.passwordConfirmation" formControlName="passwordConfirmation" type="text" id="password-retype" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input [(ngModel)]="person.name" formControlName="name" type="text" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input [(ngModel)]="person.birthday" formControlName="birthday" type="date" id="birthday" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="identity">Identity</label>
+            <input [(ngModel)]="person.identity" formControlName="identity" type="text" id="identity" class="form-control">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-10">
+                <label for="street">Street</label>
+                <input [(ngModel)]="address.street" formControlName="street" type="text" id="street" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="number">Nº</label>
+                <input [(ngModel)]="address.number" formControlName="number" type="number" id="number" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="district">District</label>
+                <input [(ngModel)]="address.district" formControlName="district" type="text" id="district" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="city">City</label>
+                <input [(ngModel)]="address.city" formControlName="city" type="text" id="city" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="zip-code">Zip Code</label>
+                <input [(ngModel)]="address.zipCode" formControlName="zipCode" type="text" id="zip-code" class="form-control">
+            </div>
+        </div>
+        <button (click)="registerPerson()" [disabled]="!form.valid" class="btn btn-primary btn-block">Register</button>
+    </form>
+</div>
+
+

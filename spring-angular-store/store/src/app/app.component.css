@@ -1,0 +1,6 @@
+.page-title {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid;
+}

@@ -13,9 +13,14 @@ public class LocaleMessageFactory {
     @Autowired
     private MessageSource messageSource;
 
+    public String create(IMessageEnum key, String defaultMessage) {
+        return messageSource.getMessage(key.getKey(), null,
+                defaultMessage, LocaleContextHolder.getLocale());
+    }
+
     public String create(IMessageEnum key) {
         return messageSource.getMessage(key.getKey(), null,
-    "Default Message", LocaleContextHolder.getLocale());
+                "", LocaleContextHolder.getLocale());
     }
 
 }
