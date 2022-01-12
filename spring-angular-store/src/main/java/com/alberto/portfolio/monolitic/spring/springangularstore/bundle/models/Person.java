@@ -20,7 +20,10 @@ public class Person extends BaseEntity {
     private Date birthday;
     private String identity;
 
-    @OneToMany(mappedBy = "personId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personId", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Address> address;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Profile> profiles;
 
 }

@@ -23,12 +23,12 @@ public class BaseController<R extends BaseService, D extends IDTO> {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> retrieveProductById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.recoveryById(id));
+        return ResponseEntity.ok(service.retrieveById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<?>> retrieveAllProducts() {
-        return ResponseEntity.ok(service.recoveryAll());
+        return ResponseEntity.ok(service.retrieveAll());
     }
 
     @PostMapping

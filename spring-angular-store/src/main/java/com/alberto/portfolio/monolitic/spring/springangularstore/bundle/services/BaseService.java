@@ -29,7 +29,7 @@ public class BaseService<R extends JpaRepository, E extends BaseEntity, D extend
     @Autowired
     private LocaleMessageFactory localeMessageFactory;
 
-    public D recoveryById(Long id) {
+    public D retrieveById(Long id) {
         Optional<E> optionalEntity = repository.findById(id);
         if (optionalEntity.isPresent())
             return fromEntity(optionalEntity.get());
@@ -37,7 +37,7 @@ public class BaseService<R extends JpaRepository, E extends BaseEntity, D extend
         throw exceptionFactory.throwDataBase(DatabaseMessage.notFound);
     }
 
-    public List<D> recoveryAll() {
+    public List<D> retrieveAll() {
         List<E> entities = repository.findAll();
         if (entities.isEmpty())
             throw exceptionFactory.throwDataBase(DatabaseMessage.noRecordsFound);
@@ -51,7 +51,7 @@ public class BaseService<R extends JpaRepository, E extends BaseEntity, D extend
         return fromEntity(entity);
     }
 
-    public D updateProduct(D dto) {
+    public D update(D dto) {
         if (repository.existsById(dto.getId())) {
             E entity = toEntity(dto);
             repository.save(entity);

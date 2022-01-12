@@ -5,11 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CredentialsDTO {
 
     private PersonDTO person;
+    private String tokenType = "Bearer";
     private String token;
+
+    public CredentialsDTO(PersonDTO person) {
+        this.person = person;
+    }
 
 }
