@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("${v1API}/profile")
 public class ProfileController extends BaseController<ProfileService, ProfileDTO> {
 }

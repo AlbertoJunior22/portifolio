@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("person")
+@RequestMapping("${v1API}/person")
 public class PersonController extends BaseController<PersonService, PersonDTO> {
 }

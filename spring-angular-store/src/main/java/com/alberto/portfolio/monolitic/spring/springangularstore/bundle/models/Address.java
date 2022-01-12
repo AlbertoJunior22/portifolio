@@ -2,8 +2,7 @@ package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.models;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -14,8 +13,6 @@ public class Address extends BaseEntity {
     private String district;
     private String city;
     private String zipCode;
-
-    @Column(name = "person_id")
     private Long personId;
 
 }

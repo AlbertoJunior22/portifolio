@@ -1,2 +1,2 @@
 rootProject.name = 'spring-angular-store'
-include 'store'
+//include 'store'

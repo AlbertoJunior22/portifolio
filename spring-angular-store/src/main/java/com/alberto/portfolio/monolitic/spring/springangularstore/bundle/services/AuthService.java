@@ -24,6 +24,7 @@ public class AuthService implements UserDetailsService {
         PersonDTO person = personService.retrievePersonByLogin(login);
         if (person == null)
             throw exceptionFactory.throwAuthentication(AuthenticationMessage.noUserOrPassword);
+        person.setPassword(null);
         return new CredentialsDTO(person);
     }
 
@@ -48,7 +49,8 @@ public class AuthService implements UserDetailsService {
         dto.setId(person.getId());
         dto.setUsername(person.getLogin());
         dto.setPassword(person.getPassword());
-        dto.setProfiles(person.getProfiles());
+        dto.setAuthorities(person.getProfile().getRoles());
+        dto.setProfile(person.getProfile());
         dto.setAccountNonExpired(true);
         dto.setAccountNonLocked(true);
         dto.setCredentialsNonExpired(true);

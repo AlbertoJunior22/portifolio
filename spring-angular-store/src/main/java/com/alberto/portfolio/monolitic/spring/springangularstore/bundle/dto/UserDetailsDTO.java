@@ -7,7 +7,6 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -16,26 +15,23 @@ public class UserDetailsDTO implements UserDetails {
     private Long id;
     private String password;
     private String username;
+    private List<RoleDTO> authorities;
+    private ProfileDTO profile;
 
     @Getter(AccessLevel.PRIVATE)
-    private Boolean accountNonExpired = true;
+    private boolean accountNonExpired = true;
 
     @Getter(AccessLevel.PRIVATE)
-    private Boolean accountNonLocked = true;
+    private boolean accountNonLocked = true;
 
     @Getter(AccessLevel.PRIVATE)
-    private Boolean credentialsNonExpired = true;
+    private boolean credentialsNonExpired = true;
 
     @Getter(AccessLevel.PRIVATE)
-    private Boolean enabled;
+    private boolean enabled = true;
 
     @Getter(AccessLevel.PRIVATE)
-    private List<ProfileDTO> profiles;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return profiles;
-    }
+    private List<GrantedAuthority> profiles;
 
     @Override
     public boolean isAccountNonExpired() {

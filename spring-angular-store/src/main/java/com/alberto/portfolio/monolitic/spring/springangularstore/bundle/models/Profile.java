@@ -1,15 +1,19 @@
 package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.models;
 
-import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.interfaces.IEntity;
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Data
 @Entity
-public class Profile extends BaseEntity implements GrantedAuthority {
+public class Profile extends BaseEntity{
 
-    private String authority;
+    private String profile;
+
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
+    private List<Role> roles;
 
 }

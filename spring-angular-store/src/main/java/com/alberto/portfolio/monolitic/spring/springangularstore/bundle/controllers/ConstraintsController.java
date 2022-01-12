@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("constraints")
+@RequestMapping("${v1API}/constraints")
 public class ConstraintsController {
 
     @Autowired

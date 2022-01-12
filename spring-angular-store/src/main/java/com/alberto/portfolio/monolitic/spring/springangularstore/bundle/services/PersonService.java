@@ -29,7 +29,7 @@ public class PersonService extends BaseService<PersonRepository, Person, PersonD
 
     @Override
     public PersonDTO create(PersonDTO dto) {
-        dto.setProfiles(null);
+        dto.setProfile(null);
         dto.setPassword(
             new BCryptPasswordEncoder().encode(dto.getPassword())
         );

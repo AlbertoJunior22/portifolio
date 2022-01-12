@@ -1,6 +1,5 @@
 package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.models;
 
-import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.interfaces.IEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,10 +19,11 @@ public class Person extends BaseEntity {
     private Date birthday;
     private String identity;
 
-    @OneToMany(mappedBy = "personId", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="personId")
     private List<Address> address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Profile> profiles;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Profile profile;
 
 }

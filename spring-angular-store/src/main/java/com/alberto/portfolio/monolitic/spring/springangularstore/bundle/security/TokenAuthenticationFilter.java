@@ -30,6 +30,11 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String token = getTokenFromHeader(request);
+        if (token == null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (tokenService.isValid(token))
             authenticate(token);
 

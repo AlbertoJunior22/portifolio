@@ -20,7 +20,7 @@ public class PersonDTO implements IDTO {
     private String name;
     private Date birthday;
     private String identity;
-    private List<ProfileDTO> profiles;
+    private ProfileDTO profile;
     private List<AddressDTO> address;
 
 }
