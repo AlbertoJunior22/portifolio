@@ -1,4 +1,5 @@
 import { Address } from "./Address"
+import { Profile } from "./Profile"
 
 export class Person {
 
@@ -12,6 +13,7 @@ export class Person {
     birthday: Date
     identity: string
     address: Array<Address>
+    profile: Profile
 
     constructor(init?:Partial<Address>) {
         Object.assign(this, init)

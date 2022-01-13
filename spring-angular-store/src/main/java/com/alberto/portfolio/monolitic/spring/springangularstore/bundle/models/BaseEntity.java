@@ -14,11 +14,11 @@ public class BaseEntity {
     protected Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date createdDate;
+    protected Date createdDate = new Date();
 
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date updatedDate;
-    protected String createdBy;
-    protected String alteredBy;
+    protected Date updatedDate = new Date();
+    protected String createdBy = "system";
+    protected String alteredBy = "system";
 
 }

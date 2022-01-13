@@ -10,11 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,7 +28,7 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<?> auth(@Valid @RequestBody LoginDTO login) {
+    public ResponseEntity<CredentialsDTO> auth(@Valid @RequestBody LoginDTO login) {
         UsernamePasswordAuthenticationToken userPass =
                 new UsernamePasswordAuthenticationToken(login.getLogin(), login.getPassword());
 
@@ -44,6 +40,11 @@ public class AuthController {
         credentials.setTokenType(ApplicationConstants.BEARER_TOKEN_TYPE);
 
         return ResponseEntity.ok(credentials);
+    }
+
+    @GetMapping
+    public ResponseEntity<String> verifyAuthentication() {
+        return ResponseEntity.ok("Authenticated");
     }
 
 }

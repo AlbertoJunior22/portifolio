@@ -1,13 +1,10 @@
 package com.alberto.portfolio.monolitic.spring.springangularstore.bundle.services;
 
 import com.alberto.portfolio.monolitic.spring.springangularstore.bundle.dto.UserDetailsDTO;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

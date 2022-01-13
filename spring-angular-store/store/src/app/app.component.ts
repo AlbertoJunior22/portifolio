@@ -12,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   routeSub: any
   routerSub: any
-  pageTitle = 'Register';
+  pageTitle: any = 'Register';
 
   constructor(private route: ActivatedRoute, private router: Router,
     private fieldsConstraintsConfiguration: FieldsConstraintsConfiguration) {
@@ -31,7 +31,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.routerSub = this.router.events.subscribe(evt => {
       if (evt instanceof RoutesRecognized) {
         let data = evt as any
-        this.pageTitle = data.state.root.firstChild.data[0]
+        if (data.state.root.firstChild.data)
+          this.pageTitle = data.state.root.firstChild.data[0]
+        else
+          this.pageTitle = null
       }
     })
   }
